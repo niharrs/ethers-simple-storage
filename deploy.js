@@ -7,9 +7,14 @@ async function main() {
   const RPC = process.env.RPC_ENDPOINT;
   const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
-  const provider = new ethers.providers.JsonRpcProvider(RPC);
+  const SEPOLIA_RPC_ENDPOINT = process.env.SEPOLIA_RPC_ENDPOINT;
+  const SEPOLIA_PRIV_KEY = process.env.SEPOLIA_PRIV_KEY;
 
-  const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+  // const provider = new ethers.providers.JsonRpcProvider(RPC);
+  const provider = new ethers.providers.JsonRpcProvider(SEPOLIA_RPC_ENDPOINT);
+
+  // const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+  const wallet = new ethers.Wallet(SEPOLIA_PRIV_KEY, provider);
 
   // Read binaries and ABI
   const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf8");
@@ -26,6 +31,7 @@ async function main() {
   // console.log(deployTransaction);
   // Transaction receipt: mention number of blocks of confirmation needed
   const transactionReceipt = await contract.deployTransaction.wait(1);
+  console.log(`Contract address: ${contract.address}`);
   // console.log(transactionReceipt);
 
   // // ------- Deploy contract using raw data -------
