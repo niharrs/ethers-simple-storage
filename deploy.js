@@ -5,10 +5,9 @@ require("dotenv").config();
 async function main() {
   // Connect to the blockchain
   const RPC = process.env.RPC_ENDPOINT;
+  const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
   const provider = new ethers.providers.JsonRpcProvider(RPC);
-
-  const PRIVATE_KEY = process.env.PRIV_KEY;
 
   const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
 
