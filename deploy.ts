@@ -1,14 +1,18 @@
-const ethers = require("ethers");
-const fs = require("fs");
-require("dotenv").config();
+// const ethers = require("ethers");
+// const fs = require("fs");
+// require("dotenv").config();
+
+import { ethers } from "ethers";
+import fs from "fs";
+import "dotenv/config";
 
 async function main() {
   // Connect to the blockchain
-  const RPC = process.env.RPC_ENDPOINT;
-  const PRIVATE_KEY = process.env.PRIVATE_KEY;
+  const RPC = process.env.RPC_ENDPOINT!;
+  const PRIVATE_KEY = process.env.PRIVATE_KEY!;
 
-  const SEPOLIA_RPC_ENDPOINT = process.env.SEPOLIA_RPC_ENDPOINT;
-  const SEPOLIA_PRIV_KEY = process.env.SEPOLIA_PRIV_KEY;
+  const SEPOLIA_RPC_ENDPOINT = process.env.SEPOLIA_RPC_ENDPOINT!;
+  const SEPOLIA_PRIV_KEY = process.env.SEPOLIA_PRIV_KEY!;
 
   // const provider = new ethers.providers.JsonRpcProvider(RPC);
   const provider = new ethers.providers.JsonRpcProvider(SEPOLIA_RPC_ENDPOINT);
